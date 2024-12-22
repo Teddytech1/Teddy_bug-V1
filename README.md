@@ -200,7 +200,7 @@ npm i -g forever && forever index.js && forever save && forever logs
  <br> 
 <p align="center">
 <a href="https://wa.me/254769787515"><img src="https://img.shields.io/badge/Contact-style=for-the-badge&logo=whatsapp&logoColor=blue" />
-<a href="https://wa.me/254769787515"><img src="https://img.shields.io/badge/Join Official Channel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
+<a href="https://wa.me/254769787515"><img src="https://img.shields.io/badge/Contact the me-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
    
 <a href='https://chat.whatsapp.com/LYOPu85NAVv4ymxOxCxRQY' target="_blank"><img alt='Whatsapp' src='https://img.shields.io/badge/OFFICIAL-GC-h?color=black&style=for-the-badge&logo=whatsapp' width="96.35" height="28"/></a></p>
 
