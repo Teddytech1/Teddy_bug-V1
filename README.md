@@ -150,7 +150,7 @@ pkg install yarn
 git clone (copy and paste your forked repo link not mine to save changes your changes) 
 ```
 ```
-cd BADBOI-v4
+cd TEDDY-BUG-V1 
 ```
 ```
 yarn install
@@ -176,10 +176,10 @@ npm i -g forever && forever index.js && forever save && forever logs
 - [Download Libwebp](https://developers.google.com/speed/webp/download)
 
 ```cmd
-> git clone https://github.com/BADBOI-v1/BADBOI-v4.git
+> git clone https://github.com/Teddy_bug-V1.git
 ```
 ```
-> cd BADBOI-v4
+> cd TEDDY-BUG-V1 
 ```
 ```
 > yarn install
@@ -190,9 +190,9 @@ npm i -g forever && forever index.js && forever save && forever logs
 
 
 -------
-## ```YOUTUBE CHANNEL FOR TUTORIALS```
+## ```YOUTUBE CHANNEL FOR TUTORIALS(coming soon)```
 
- - [ Click ](https://youtube.com/@BADBOI-k2i?si=1_Ae2h9Kl9IbAo7E)
+ - [ Click ](https://youtube.com)
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a><a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
