@@ -71,7 +71,7 @@ https://github.com/clhuang/heroku-buildpack-webp-binaries.git
 
 </br>
 
-#### COPY THESE COMMANDS AND PASTE IF YOU TRYING TO DEPLOY [BADBOI-v4](https://github.com/BADBOI-v1/BADBOI-v4) ON ANY TERMINAL
+#### COPY THESE COMMANDS AND PASTE IF YOU TRYING TO DEPLOY [TEDDY-BUG-V1](https://github.com/BADBOI-v1/BADBOI-v4) ON ANY TERMINAL
 ```
 sudo apt -y update && sudo apt -y upgrade
 ```
