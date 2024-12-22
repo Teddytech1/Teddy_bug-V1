@@ -15,10 +15,10 @@ TEDDY-BUG-V1 𝘽𝙤𝙩 Multi Device is a whatsapp bot created by <a href="htt
 <p align="center">
 <a href="https://github.com/Teddy_bug-V1/followers"><img title="Followers" src="https://img.shields.io/github/followers/BADBOI-v1?color=red&style=flat-square"></a>
 <a href="https://github.com/TEDDY-BUG-V1/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/BADBOI-v1/BADBOI-v4?color=blue&style=flat-square"></a>
-<a href="https://github.com/TEDDY-BUG-V1/network/members"><img title="Forks" src="https://img.shields.io/github/forks/BADBOI-v1/BADBOI-v4?color=red&style=flat-square"></a>
-<a href="https://github.com/TEDDY-BUG-V1/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/BADBOI-v1/BADBOI-v4?label=Watchers&color=blue&style=flat-square"></a>
-<a href="https://github.com/TEDDY-BUG-V1"><img title="Open Source" src="https://img.shields.io/badge/Author-BADBOI%20Bot%20Inc.-red?v=103"></a>
-<a href="https://github.com/TEDDY-BUG-V1/"><img title="Size" src="https://img.shields.io/github/repo-size/BADBOI-v1/BADBOI-v4?style=flat-square&color=green"></a>
+<a href="https://github.com/TEDDY-BUG-V1/network/members"><img title="Forks" src="https://img.shields.io/github/forks/Teddy_bug-V1?color=red&style=flat-square"></a>
+<a href="https://github.com/TEDDY-BUG-V1/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/Tedddy_bug-V1?label=Watchers&color=blue&style=flat-square"></a>
+<a href="https://github.com/TEDDY-BUG-V1"><img title="Open Source" src="https://img.shields.io/badge/Author-TEDDY-BUG%20Bot%20Inc.-red?v=103"></a>
+<a href="https://github.com/TEDDY-BUG-V1/"><img title="Size" src="https://img.shields.io/github/repo-size/Teddy_bug-V1?style=flat-square&color=green"></a>
 <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2TEDDY-BUG-V1-v1%2FTEDDY-BUG-v1&count_bg=%2379C83D&title_bg=%23555555&icon=probot.svg&icon_color=%2300FF6D&title=hits&edge_flat=false"/></a>
 <a href="https://github.com/TEDDY-BUG-V1/graphs/commit-activity"><img height="20" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"></a>&nbsp;&nbsp;
 
