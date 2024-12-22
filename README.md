@@ -13,8 +13,8 @@ TEDDY-BUG-V1 𝘽𝙤𝙩 Multi Device is a whatsapp bot created by <a href="htt
 </p>
 # ```Bot Info```
 <p align="center">
-<a href="https://github.com/Teddy_bug-V1/followers"><img title="Followers" src="https://img.shields.io/github/followers/BADBOI-v1?color=red&style=flat-square"></a>
-<a href="https://github.com/TEDDY-BUG-V1/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/BADBOI-v1/BADBOI-v4?color=blue&style=flat-square"></a>
+<a href="https://github.com/Teddy_bug-V1/followers"><img title="Followers" src="https://img.shields.io/github/followers/Teddy_bug-v1?color=red&style=flat-square"></a>
+<a href="https://github.com/TEDDY-BUG-V1/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/Teddy_bug-V1?color=blue&style=flat-square"></a>
 <a href="https://github.com/TEDDY-BUG-V1/network/members"><img title="Forks" src="https://img.shields.io/github/forks/Teddy_bug-V1?color=red&style=flat-square"></a>
 <a href="https://github.com/TEDDY-BUG-V1/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/Tedddy_bug-V1?label=Watchers&color=blue&style=flat-square"></a>
 <a href="https://github.com/TEDDY-BUG-V1"><img title="Open Source" src="https://img.shields.io/badge/Author-TEDDY-BUG%20Bot%20Inc.-red?v=103"></a>
