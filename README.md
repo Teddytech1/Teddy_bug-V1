@@ -207,18 +207,14 @@ npm i -g forever && forever index.js && forever save && forever logs
 ## 🎯 Authors 🎯
   <div align="center">
   
-| [![Tᴀɪʀᴀ Mᴀᴋɪɴᴏ](https://github.com/Teddy_bug-v1.png?size=150)](https://github.com/BADBOI-v1) |
+| [![Tᴀɪʀᴀ Mᴀᴋɪɴᴏ](https://github.com/Teddy_bug-v1.png?size=150)](https://github.com/TEDDY-BUG-V1) |
 |----|
-| [  Badboi Hacker](https://github.com/Teddy_bug-v1) |
+| [  TEDDY-TECH](https://github.com/Teddy_bug-v1) |
 |  Developer |
 
   </div>
   <div align="center">
-  
-| [![𝕷𝖔𝖗𝖉 𝕹𝖔 𝕹𝖆𝖒𝖊](https://github.com/Anime-King01.png?size=150)](https://github.com/Anime-King01) |
-|----|
-| [  Lord No Name](https://github.com/Anime-King01) |
-|  Co-Developer |
+
 
   </div>
    
