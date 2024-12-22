@@ -207,21 +207,12 @@ npm i -g forever && forever index.js && forever save && forever logs
 ## 🎯 Authors 🎯
   <div align="center">
   
-| [![Tᴀɪʀᴀ Mᴀᴋɪɴᴏ](https://github.com/Teddy_bug-v1.png?size=150)](https://github.com/TEDDY-BUG-V1) |
+|](https://github.com/Teddy_bug-v1.png?size=150)](https://github.com/TEDDY-BUG-V1) |
 |----|
 | [  TEDDY-TECH](https://github.com/Teddy_bug-v1) |
 |  Developer |
 
-  </div>
-  <div align="center">
-
-
-  </div>
-   
-  </br> 
-
-<h2 align="center">  Reminder
-</h2>
+  
    
 - This bot is not made by `WhatsApp Inc.` So misusing the bot might `ban` your `WhatsApp account!`(Though your WhatsApp account can be unbanned only once.)
 - I am not responsible for banning your account.
@@ -229,9 +220,4 @@ npm i -g forever && forever index.js && forever save && forever logs
  
   
   
-   ## `Special Thanks To`
-
-* [`📕 Lord No Name!!`](https://github.com/Anime-King01)
-
-  * ⧉ 𝐓𝐇𝐀𝐍𝐊𝐒 𝐅𝐎𝐑 𝐓𝐇𝐄 𝐒𝐔𝐏𝐏𝐎𝐑𝐓 ⧉
-  * BADBOI HACKER IS ACTIVE 😂😂😂
+   
