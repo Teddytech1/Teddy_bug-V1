@@ -25,7 +25,7 @@ TEDDY-BUG-V1 𝘽𝙤𝙩 Multi Device is a whatsapp bot created by <a href="htt
 
 ### If you want to deploy somewhere else, upload your creds.json in session folder after getting pair code on replit or render. 
 
-### 1. <a href="https://github.com/BADBOI-v1/BADBOI-v4/fork"><img src="https://img.shields.io/badge/FORK-blue" alt="Click Here to fork TEDDY-BUG-V1" width="70"></a>
+### 1. <a href="https://github.com/Teddy_bug-V1/fork"><img src="https://img.shields.io/badge/FORK-blue" alt="Click Here to fork TEDDY-BUG-V1" width="70"></a>
 ## `Generate Pair Code For Session`
  
 [`TEDDY-BUG-V1 Pairing Using Render`](https://creds-json-paring-generator-by-teddy-2.onrender.com)
