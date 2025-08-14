@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Makamesco MD Master Bot – Deployment</title>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #ff0080, #ff8c00, #ff0080);
+    background-size: 400% 400%;
+    animation: gradientBG 6s ease infinite;
+    color: #fff;
+  }
+  @keyframes gradientBG {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  h1 {
+    margin-top: 0;
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  }
+  .card {
+    background: rgba(255,255,255,0.12);
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    max-width: 480px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.3);
+    backdrop-filter: blur(6px);
+  }
+  input {
+    padding: 0.6rem;
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    outline: none;
+  }
+  button {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ff4d4d, #ffcc00);
+    color: #111;
+    margin: 0.5rem;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255,255,255,0.6);
+  }
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<h1>🔥 Makamesco MD Master Bot Deployment 🔥</h1>
+<p>Enter your GitHub username to verify your fork:</p>
+
+<div class="card" id="verifyCard">
+  <input type="text" id="username" placeholder="GitHub Username"/>
+  <br/>
+  <button onclick="verifyFork()">Verify</button>
+  <p id="verifyMsg"></p>
+</div>
+
+<div class="card hidden" id="forkCard">
+  <h2>❌ Repo not forked</h2>
+  <p>You must fork the repo to proceed.</p>
+  <button onclick="window.open('https://github.com/Teddytech1/TEDDY-XMD/fork', '_blank')">Fork Now</button>
+</div>
+
+<div class="card hidden" id="deployCard">
+  <h2>✅ Repo Verified</h2>
+  <p>Proceed with your deployment:</p>
+  <button onclick="window.open('https://heroku.com/deploy?template=https://github.com/'+verifiedUser+'/TEDDY-XMD', '_blank')">🚀 Deploy to Heroku</button>
+  <button onclick="window.open('https://render.com', '_blank')">🌐 Deploy to Render</button>
+  <button onclick="window.open('https://github.com/Teddytech1/TEDDY-XMD/archive/refs/heads/main.zip', '_blank')">⬇️ Download Latest ZIP</button>
+  <button onclick="window.open('https://dashboard.katabump.com/auth/login#5e58ec', '_blank')">📋 Open Katapumb Panel</button>
+</div>
+
+<script>
+  let verifiedUser = "";
+
+  async function verifyFork() {
+    const user = document.getElementById("username").value.trim();
+    const msg = document.getElementById("verifyMsg");
+    msg.textContent = "Verifying...";
+    document.getElementById("forkCard").classList.add("hidden");
+    document.getElementById("deployCard").classList.add("hidden");
+
+    if (!user) {
+      msg.textContent = "Please enter a GitHub username.";
+      return;
+    }
+
+    try {
+      const res = await fetch(`https://api.github.com/repos/${user}/Makamesco_md`);
+      if (res.ok) {
+        const repoData = await res.json();
+        if (repoData.fork && repoData.parent && repoData.parent.full_name === "sesco001/Makamesco_md") {
+          verifiedUser = user;
+          msg.textContent = "✅ Verified! Showing deployment options...";
+          document.getElementById("deployCard").classList.remove("hidden");
+        } else {
+          msg.textContent = "❌ Repo found but it’s not a fork of the official Makamesco_md.";
+          document.getElementById("forkCard").classList.remove("hidden");
+        }
+      } else {
+        msg.textContent = "❌ No such fork found.";
+        document.getElementById("forkCard").classList.remove("hidden");
+      }
+    } catch (err) {
+      msg.textContent = "⚠️ Error verifying fork.";
+    }
+  }
+</script>
+
+</body>
+</html>
