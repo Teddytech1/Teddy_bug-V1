@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Makamesco MD Master Bot – Deployment</title>
+<title>TEDDY XMD BOT – Deployment</title>
 <style>
   body {
     font-family: Arial, Helvetica, sans-serif;
@@ -65,7 +65,7 @@
 </head>
 <body>
 
-<h1>🔥 Makamesco MD Master Bot Deployment 🔥</h1>
+<h1>🔥 TEDDY-XMD Bot Deployment 🔥</h1>
 <p>Enter your GitHub username to verify your fork:</p>
 
 <div class="card" id="verifyCard">
@@ -106,15 +106,15 @@
     }
 
     try {
-      const res = await fetch(`https://api.github.com/repos/${user}/Makamesco_md`);
+      const res = await fetch(`https://api.github.com/repos/${user}/TEDDY-XMD`);
       if (res.ok) {
         const repoData = await res.json();
-        if (repoData.fork && repoData.parent && repoData.parent.full_name === "sesco001/Makamesco_md") {
+        if (repoData.fork && repoData.parent && repoData.parent.full_name === "Teddytech1/TEDDY-XMD") {
           verifiedUser = user;
           msg.textContent = "✅ Verified! Showing deployment options...";
           document.getElementById("deployCard").classList.remove("hidden");
         } else {
-          msg.textContent = "❌ Repo found but it’s not a fork of the official Makamesco_md.";
+          msg.textContent = "❌ Repo found but it’s not a fork of the official TEDDY-XMD.";
           document.getElementById("forkCard").classList.remove("hidden");
         }
       } else {
