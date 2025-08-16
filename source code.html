@@ -1,0 +1,508 @@
+<html lang="id">  
+<head>  
+<meta charset="utf-8" />  
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>  
+<title>YOUR FILES HAVE BEEN ENCRYPTED !!!</title>  <!--  
+  FULL HORROR MODE — DEMO VISUAL SAJA.  
+  TIDAK MELAKUKAN ENKRIPSI / AKSES FILE / NETWORK / PEMBAYARAN.  
+  TEKAN ESC UNTUK KELUAR & RESTORE.  
+-->  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;600;800&family=Oswald:wght@600;800&display=swap" rel="stylesheet">  
+<style>  
+  :root{  
+    --bg0:#040204;  
+    --bg1:#120204;  
+    --red:#ff2b2b;  
+    --muted:#bdbfc3;  
+    --glass: rgba(255,255,255,0.02);  
+  }  
+  *{box-sizing:border-box}  
+  html,body{height:100%;margin:0;font-family:Roboto Mono, monospace;background:var(--bg0);color:#fff;overflow:hidden}  
+  body{user-select:none;-webkit-user-select:none;touch-action:none}  /* stage */
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+background:
+radial-gradient(1200px 500px at 8% 10%, rgba(255,43,43,0.04), transparent 6%),
+linear-gradient(180deg,var(--bg0),var(--bg1));}
+
+/* UI grid */
+.ui{width:100vw;height:100vh;display:grid;grid-template-columns:1fr 420px;align-items:stretch;gap:0;padding:0;margin:0;position:relative}
+.left{padding:48px;display:flex;flex-direction:column;gap:18px;justify-content:center;position:relative;overflow:hidden}
+.right{background:linear-gradient(180deg,#060606,#0b0b0d);padding:22px;border-left:1px solid rgba(255,255,255,0.02);display:flex;flex-direction:column}
+
+/* headline */
+.headline{font-family:Oswald, sans-serif;font-size:92px;line-height:0.9;color:var(--red);letter-spacing:2px;text-shadow:0 18px 60px rgba(255,43,43,0.10);transform:translateZ(0);position:relative}
+.headline.glitch{animation:glitchText 900ms steps(2) infinite}
+
+@keyframes glitchText{
+0%{text-shadow:0 18px 40px rgba(255,43,43,0.12)}
+30%{text-shadow: -6px 0 0 rgba(255,0,0,0.65), 6px 0 0 rgba(0,255,255,0.05)}
+60%{text-shadow: 4px 2px 0 rgba(255,100,100,0.6)}
+100%{text-shadow:0 18px 40px rgba(255,43,43,0.12)}
+}
+
+/* subtitle */
+.sub{color:var(--muted);font-size:15px;max-width:70%;margin-top:8px}
+
+/* panic center */
+.panicRow{display:flex;gap:24px;align-items:center;margin-top:20px}
+.orb{width:160px;height:160px;border-radius:999px;background:radial-gradient(circle at 30% 20%, rgba(255,40,40,0.44), rgba(255,20,20,0.06) 40%, transparent 60%);display:flex;align-items:center;justify-content:center;box-shadow:0 40px 140px rgba(255,30,30,0.12);animation:pulse 1.2s infinite}
+.orb i{font-size:60px;color:#fff;transform:translateY(-4px)}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+
+.countdown{font-family:Roboto Mono, monospace;font-size:92px;letter-spacing:3px;min-width:260px;text-align:center;background:linear-gradient(90deg, rgba(0,0,0,0.32), rgba(255,255,255,0.02));padding:28px 30px;border-radius:14px;box-shadow:0 20px 80px rgba(0,0,0,0.6);position:relative;overflow:hidden}
+.countdown.smash{transform:scale(1.08) rotate(-1deg)}
+
+/* ransom block */
+.ransom{margin-top:22px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,43,43,0.02), rgba(255,43,43,0.01));border:1px solid rgba(255,255,255,0.02)}
+.ransom h2{margin:0;font-family:Roboto Mono;font-size:20px;color:#ffdede}
+.ransom p{margin:8px 0 0 0;color:#ffecec;line-height:1.4}
+
+/* file list right */
+.filearea{flex:1;margin-top:12px;overflow:auto;padding-right:8px}
+.file{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;margin-bottom:8px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);transition:transform .18s ease, filter .18s ease}
+.file.corrupt{transform:translateX(-6px) rotate(-0.6deg);filter:blur(.3px) saturate(.9)}
+.fname{font-weight:800;color:#eaf0ff;font-size:14px;max-width:66%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fmeta{color:var(--muted);font-size:12px}
+
+.progressWrap{margin-top:10px}
+.progress{height:12px;background:rgba(255,255,255,0.03);border-radius:12px;overflow:hidden}
+.progress > i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ff2b2b,#ff934b);box-shadow:0 8px 30px rgba(255,43,43,0.08);transition:width 600ms linear}
+
+/* noise & CRT */
+.noise, .vhs{
+pointer-events:none;
+position:absolute;inset:0;mix-blend-mode:overlay;opacity:.14;
+}
+.noise{background-image:linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);background-size:100% 2px;opacity:.06}
+.vhs{background-image:repeating-linear-gradient(transparent, transparent 2px, rgba(255,255,255,0.02) 3px);opacity:.05}
+
+/* big LOCKED overlay */
+.lockedOverlay{position:fixed;inset:0;background:linear-gradient(180deg,#200000,#000000);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;text-align:center;z-index:99999;color:#fff;opacity:0;transform:scale(0.98);transition:opacity 200ms ease, transform 260ms ease}
+.lockedOverlay.show{opacity:1;transform:scale(1)}
+.lockedBig{font-family:Oswald, sans-serif;font-size:160px;color:var(--red);letter-spacing:8px;text-shadow:0 40px 120px rgba(255,30,30,0.16)}
+.lockedSub{font-family:Roboto Mono;font-size:20px;color:#ffdede;margin-top:6px}
+
+/* hide cursor */
+.hideCursor{cursor:none !important}
+
+/* scanline horizontal sweep for dramatic moment */
+.sweep{position:absolute;left:-40%;top:0;height:100%;width:60%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.02),transparent);transform:skewX(-12deg);pointer-events:none;mix-blend-mode:overlay;opacity:0;transition:opacity .18s ease}
+.sweep.active{opacity:.6}
+
+/* small red warning bar pinned top */
+.warnBar{position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,#ff0000,#ff7b00);box-shadow:0 6px 24px rgba(255,0,0,0.06);transform:scaleX(0);transform-origin:left;transition:transform .6s ease}
+.warnBar.show{transform:scaleX(1)}
+
+/* responsive */
+@media (max-width:1100px){
+.ui{grid-template-columns:1fr;grid-auto-rows:1fr 420px}
+.headline{font-size:48px}
+.countdown{font-size:48px;padding:18px}
+.lockedBig{font-size:72px}
+.orb{width:100px;height:100px}
+}
+
+/* subtle RGB split for images / headline via pseudo layering */
+.rgbSplit::before, .rgbSplit::after{
+content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.04;
+}
+.rgbSplit::before{transform:translateX(-6px) translateY(2px) scale(1.01);filter:hue-rotate(-10deg)}
+.rgbSplit::after{transform:translateX(6px) translateY(-2px) scale(1.01);filter:hue-rotate(8deg)}
+
+/* === ADDED: panic flicker + full-screen flash + glitch text (tidak menghapus kode lain) === */
+
+/* rapid overlay flash (applies to lockedOverlay) */
+@keyframes panicFlicker {
+  0%, 100% { background: linear-gradient(180deg,#200000,#000000); opacity:1; }
+  20% { background: linear-gradient(180deg,#300000,#100000); opacity:1; }
+  40% { background: linear-gradient(180deg,#ff2b2b,#770000); opacity:1; }
+  60% { background: linear-gradient(180deg,#300000,#100000); opacity:1; }
+  80% { background: linear-gradient(180deg,#440000,#110000); opacity:1; }
+}
+.lockedOverlay.flicker {
+  animation: panicFlicker 0.14s steps(1) infinite;
+}
+
+/* glitch text for LOCKED */
+@keyframes lockedGlitch {
+  0% { transform: translateX(0) skewX(0deg); text-shadow: 0 40px 120px rgba(255,30,30,0.16); }
+  10% { transform: translateX(-6px) skewX(-6deg); text-shadow: -6px 0 10px rgba(255,0,0,0.85); }
+  20% { transform: translateX(6px) skewX(6deg); text-shadow: 6px 0 10px rgba(255,80,80,0.85); }
+  30% { transform: translateX(-3px) skewX(-3deg); text-shadow: -3px 0 8px rgba(255,20,20,0.9); }
+  40% { transform: translateX(3px) skewX(3deg); text-shadow: 3px 0 8px rgba(255,120,120,0.9); }
+  50% { transform: translateX(0) skewX(0deg); text-shadow: 0 40px 120px rgba(255,30,30,0.16); }
+  100% { transform: translateX(0) skewX(0deg); }
+}
+.lockedBig.flickerText {
+  animation: lockedGlitch 0.14s steps(1) infinite;
+}
+
+/* full-screen flash overlay via body pseudo-element (so whole viewport flashes) */
+@keyframes flashOverlay {
+  0% { opacity: 0; transform: scale(1); }
+  25% { opacity: 0.28; transform: scale(1); }
+  50% { opacity: 0.18; transform: scale(1.01); }
+  75% { opacity: 0.32; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1); }
+}
+body.panicFlash::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(255,60,60,0.18), rgba(255,10,10,0.12));
+  mix-blend-mode: screen;
+  animation: flashOverlay 0.14s steps(1) infinite;
+}
+
+/* optional: slight page-wide contrast/brightness flicker for extra panic */
+body.panicFlash { animation: pageFlash 0.28s steps(1) infinite; }
+@keyframes pageFlash {
+  0% { filter: none; }
+  50% { filter: brightness(1.08) contrast(1.05) saturate(1.05); }
+  100% { filter: none; }
+}
+
+/* end added styles */
+</style>  
+</head>  
+<body>  
+<div class="stage">  
+  <div class="ui hideCursor" id="ui">  
+    <div class="left" id="left">  
+      <div class="warnBar" id="warnBar"></div>  
+      <div class="sweep" id="sweep"></div>  
+      <div class="noise"></div>  
+      <div class="vhs"></div>  <div style="position:relative">  
+    <div style="display:flex;align-items:center;gap:18px;margin-bottom:6px">  
+      <div style="width:78px;height:78px;border-radius:12px;background:linear-gradient(135deg,#ff6b6b,#ff2b2b);display:flex;align-items:center;justify-content:center;font-weight:800;color:#140000;font-family:Roboto Mono">SL</div>  
+      <div>  
+        <div style="font-size:14px;font-weight:800;color:#ffdede">SECURE-LOCK AUTHORITY</div>  
+        <div style="font-size:11px;color:var(--muted)"> attacking  · volumes sealed</div>  
+      </div>  
+    </div>  
+
+    <div style="position:relative;overflow:visible">  
+      <div class="headline rgbSplit" id="headline">YOUR FILES HAVE BEEN ENCRYPTED!!</div>  
+    </div>  
+
+    <div class="sub" id="sub">SYSTEM WILL LOCK IN 00:05!!</div>  
+
+    <div class="panicRow">  
+      <div class="orb" aria-hidden="true"><i>!</i></div>  
+      <div class="countdown" id="countdown">00:00:05</div>  
+    </div>  
+
+    <div class="ransom" id="ransom">  
+      <h2>ENCRYPTION — COMPLETE</h2>  
+      <p id="ransomText">Uploading files : <strong id="syskey">XXXX-XXXX-XXXX</strong></p>  
+    </div>  
+  </div>  
+</div>  
+
+<div class="right" id="right">  
+  <h3 style="margin-bottom:8px;color:var(--muted)">LOCKED ACCESS TARGET</h3>  
+  <div class="filearea" id="filearea">  
+    <!-- file rows injected -->  
+  </div>  
+
+  <div class="progressWrap">  
+    <div style="display:flex;justify-content:space-between;align-items:center">  
+      <div style="font-size:12px;color:var(--muted)">ENCRYPTION PROGRESS</div>  
+      <div style="font-size:12px;color:var(--muted)" id="percent">100%</div>  
+    </div>  
+    <div class="progress" style="margin-top:8px"><i id="bar"></i></div>  
+  </div>  
+</div>
+
+  </div>  
+</div>  <!-- LOCKED overlay -->  <div class="lockedOverlay" id="lockedOverlay" role="alert" aria-live="assertive">  
+  <div class="lockedBig" id="lockedBig">LOCKED</div>  
+  <div style="font-family:Roboto Mono;font-weight:800;font-size:20px;color:#ffdede">SYSTEM ID — <span id="lockedId">XXXX-XXXX</span></div>  
+  <div class="lockedSub">WARNING! ALL FILES ENCRYPTED — SYSTEM LOCKED!!</div>  
+</div>  <script>  
+/* SAFETY: Demo visual only. Teddy is in Control .*/  
+  
+// realistic-ish filenames  
+const files = [  
+  "Laporan_Keuangan_2024.xlsx","Database_User.db","KTP_Scans.zip","Foto_Ayah.jpg","Proposal_Investor.docx",  
+  "Private_Keys.pem","Contracts_Signed.pdf","Resume_Ahmad.pdf","backup_2023.tar.gz","presentation_final.pptx",  
+  "wedding_raw.CR2","video_event.mp4","notes_personal.txt","music_archive.flac","archive_old.zip",  
+  "design_assets.psd","invoice_202312.csv","project_source.zip","diary_private.doc","client_data.db",  
+  "taxes_2023.xls","secret_plan.docx","backup_v2.bak","contacts.vcf","photo_family_01.jpg",  
+  "meeting_recording.mkv","confidential_contract.pdf","ssh_keys.key","db_main.sqlite","logo_master.ai"  
+];  
+  
+const filearea = document.getElementById('filearea');  
+function injectFiles(){  
+  filearea.innerHTML = '';  
+  for(let i=0;i<files.length;i++){  
+    const row = document.createElement('div');  
+    row.className = 'file';  
+    row.innerHTML = `<div class="fname">${files[i]}</div><div class="fmeta">${Math.floor(Math.random()*980)+20} KB</div>`;  
+    filearea.appendChild(row);  
+  }  
+}  
+injectFiles();  
+  
+// auto scroll to mimic flood  
+let scrollPos = 0;  
+let scrollIv = setInterval(autoScroll, 30);  
+function autoScroll(){  
+  const max = filearea.scrollHeight - filearea.clientHeight;  
+  scrollPos += 2.6;  
+  if(scrollPos > max) scrollPos = 0;  
+  filearea.scrollTop = scrollPos;  
+}  
+  
+// scramble generator  
+function scramble(s){  
+  const glyphs = "█▓▒░■▲▼●○▮▯▰▱◼◻◽◾*><#%$@";  
+  return s.split('').map(ch => (Math.random() < 0.72 ? glyphs[Math.floor(Math.random()*glyphs.length)] : ch)).join('');  
+}  
+  
+// initial visual encrypt pulses (faster + harsher)  
+function visualPulse(intensity = 1){  
+  const items = document.querySelectorAll('.file .fname');  
+  for(let i=0;i<items.length;i++){  
+    (function(el,idx){  
+      setTimeout(()=>{  
+        el.dataset.orig = el.textContent;  
+        el.textContent = scramble(el.textContent);  
+        el.parentElement.style.background = 'linear-gradient(90deg, rgba(255,12,12,0.06), transparent)';  
+        if(Math.random()>0.7) el.parentElement.classList.add('corrupt');  
+        setTimeout(()=>{ el.parentElement.classList.remove('corrupt'); }, 420 + Math.random()*540);  
+      }, (6 / intensity) * idx + Math.random()*80);  
+    })(items[i], i);  
+  }  
+}  
+setTimeout(()=>visualPulse(1.2), 120);  
+  
+// continuous flicker & micro-glitches  
+setInterval(()=>{  
+  const items = document.querySelectorAll('.file .fname');  
+  if(items.length===0) return;  
+  const i = Math.floor(Math.random()*items.length);  
+  const el = items[i];  
+  const old = el.textContent;  
+  el.textContent = old.split('').map(c => Math.random()>0.62 ? (Math.random()>0.5 ? '*' : '█') : c).join('');  
+  setTimeout(()=> { if(el.dataset.orig) el.textContent = el.dataset.orig; }, 140);  
+}, 840);  
+  
+// progress bar  
+document.getElementById('bar').style.width = '100%';  
+  
+// generate keys  
+function genKey(parts,seg=4){  
+  return Array.from({length:parts},()=>Math.random().toString(16).slice(2,2+seg).toUpperCase()).join('-');  
+}  
+document.getElementById('syskey').textContent = genKey(4,4);  
+document.getElementById('lockedId').textContent = Math.random().toString(16).slice(2,8).toUpperCase();  
+  
+// dramatic sweep helper  
+const sweep = document.getElementById('sweep');  
+const warnBar = document.getElementById('warnBar');  
+function dramaticSweep(){  
+  sweep.classList.add('active');  
+  warnBar.classList.add('show');  
+  setTimeout(()=> sweep.classList.remove('active'), 320);  
+  setTimeout(()=> warnBar.classList.remove('show'), 2200);  
+}  
+  
+// audio engine: ambient low rumble + ticks + alarm burst  
+let audioCtx;  
+function ensureAudio(){  
+  try{ audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); return true; }catch(e){ return false }  
+}  
+function playRumble(duration=700){  
+  if(!ensureAudio()) return;  
+  const o = audioCtx.createOscillator();  
+  const g = audioCtx.createGain();  
+  o.type = 'sine';  
+  o.frequency.value = 40 + Math.random()*30;  
+  g.gain.value = 0.02;  
+  o.connect(g); g.connect(audioCtx.destination);  
+  o.start();  
+  setTimeout(()=>{ try{ o.stop(); }catch(e){} }, duration);  
+}  
+function playTickSound(freq=220, time=90, vol=0.02){  
+  if(!ensureAudio()) return;  
+  const o = audioCtx.createOscillator();  
+  const g = audioCtx.createGain();  
+  o.type = 'square';  
+  o.frequency.value = freq;  
+  g.gain.value = vol;  
+  o.connect(g); g.connect(audioCtx.destination);  
+  o.start();  
+  setTimeout(()=>{ try{ o.stop(); }catch(e){} }, time);  
+}  
+function alarmBurst(){  
+  if(!ensureAudio()) return;  
+  const freqs = [90,140,240,360];  
+  let idx=0;  
+  const seq = setInterval(()=>{  
+    playTickSound(freqs[idx%freqs.length],180,0.04 - idx*0.007);  
+    idx++;  
+    if(idx>6){ clearInterval(seq); }  
+  }, 180);  
+}  
+  
+// intense flicker of headline periodically  
+setInterval(()=>{  
+  const h = document.getElementById('headline');  
+  h.classList.add('glitch');  
+  setTimeout(()=>h.classList.remove('glitch'), 240 + Math.random()*480);  
+}, 1100);  
+  
+// COUNTDOWN: 5 seconds, then LOCK (with acceleration + file-by-file "corrupt")  
+let sec = 5;  
+const countdownEl = document.getElementById('countdown');  
+function pad(n){ return String(n).padStart(2,'0') }  
+  
+function tick(){  
+  countdownEl.textContent = `00:00:${pad(sec)}`;  
+  dramaticSweep();  
+  playTickSound(160 + (5-sec)*40, 100, 0.018);  
+  playRumble(160);  
+  visualPulse(1.6);  
+  // accelerate everything when sec <=2  
+  if(sec <= 2){  
+    document.getElementById('countdown').classList.add('smash');  
+    playTickSound(440,160,0.028);  
+  }  
+  if(sec > 0){  
+    // on each tick, corrupt one random file more permanently  
+    corruptOneFile();  
+    sec--;  
+  } else {  
+    triggerLock();  
+  }  
+}  
+const tickIv = setInterval(tick, 1000);  
+tick(); // immediate update  
+  
+// corrupt one file entry permanently (visual-only)  
+function corruptOneFile(){  
+  const items = document.querySelectorAll('.file');  
+  if(items.length===0) return;  
+  const pick = items[Math.floor(Math.random()*items.length)];  
+  const fname = pick.querySelector('.fname');  
+  if(!fname) return;  
+  // if already corrupted, skip  
+  if(pick.dataset.corrupt) return;  
+  pick.dataset.corrupt = '1';  
+  fname.dataset.orig = fname.textContent;  
+  // animate scramble strongly  
+  let frames = 0;  
+  const anim = setInterval(()=>{  
+    fname.textContent = scramble(fname.dataset.orig);  
+    pick.classList.add('corrupt');  
+    frames++;  
+    if(frames > 8){  
+      clearInterval(anim);  
+      // final display: partial glyph + [ENCRYPTED]  
+      fname.textContent = '***__' + fname.dataset.orig.slice(0,6) + '... [ENCRYPTED]';  
+      pick.classList.add('corrupt');  
+    }  
+  }, 70);  
+}  
+  
+// LOCK trigger  
+const lockedOverlay = document.getElementById('lockedOverlay');  
+const ui = document.getElementById('ui');  
+function triggerLock(){  
+  clearInterval(tickIv);  
+  // show overlay  
+  lockedOverlay.classList.add('show');  
+
+  // <-- ADDED: activate full panic flicker (overlay + whole page + locked text) -->
+  lockedOverlay.classList.add('flicker');
+  document.getElementById('lockedBig').classList.add('flickerText');
+  document.body.classList.add('panicFlash');
+  // <-- end added -->
+
+  // strong scramble of filenames  
+  const items = document.querySelectorAll('.file .fname');  
+  items.forEach((el, idx) => {  
+    el.dataset.orig = el.dataset.orig || el.textContent;  
+    el.textContent = scramble(el.dataset.orig);  
+    el.parentElement.classList.add('corrupt');  
+    setTimeout(()=>{ el.textContent = '***__' + (el.dataset.orig||'file').slice(0,6) + '... [ENCRYPTED]'; }, 400 + idx*20);  
+  });  
+  
+  // UI changes  
+  document.getElementById('headline').textContent = 'SYSTEM LOCKED';  
+  document.getElementById('sub').textContent = 'Input dibatasi — semua sesi terkunci (simulasi).';  
+  document.getElementById('ransomText').textContent = 'Sistem terkunci permanen (simulasi) — Kode: ' + genKey(4,4);  
+  
+  // stop autoscroll and intensify  
+  clearInterval(scrollIv);  
+  
+  // intense audio + visual shocks  
+  alarmBurst();  
+  playRumble(900);  
+  dramaticSweep();  
+  // shakes  
+  let s=0;  
+  const shaker = setInterval(()=>{  
+    document.getElementById('left').style.transform = `translateX(${(s%2===0)?'-12px':'12px'}) rotate(${(s%2===0)?'-0.8deg':'0.8deg'})`;  
+    s++;  
+    if(s>10){ clearInterval(shaker); document.getElementById('left').style.transform = 'translateX(0)'; }  
+  }, 70);  
+  
+  // block right-click & many shortcuts (visual-only) but allow ESC  
+  window.addEventListener('contextmenu', preventDefaultCapture, {capture:true});  
+  window.addEventListener('keydown', blockCommonKeys, {capture:true});  
+}  
+  
+// prevent default context menu  
+function preventDefaultCapture(e){  
+  e.preventDefault();  
+  return false;  
+}  
+  
+// block some keys (visual-only)  
+function blockCommonKeys(e){  
+  if((e.ctrlKey && e.key.toLowerCase()==='w') || (e.ctrlKey && e.key.toLowerCase()==='r') || e.key==='F5' || e.key==='F11' || e.key==='F12' || (e.ctrlKey && e.shiftKey && e.key.toLowerCase()==='i')){  
+    e.preventDefault(); e.stopPropagation(); return false;  
+  }  
+  if(e.key === 'Escape'){  
+    exitSimulation();  
+  }  
+}  
+  
+// EXIT / RESTORE function (safety)  
+function exitSimulation(){  
+  // remove overlay and restore visuals  
+  lockedOverlay.classList.remove('show');  
+
+  // <-- ADDED: remove panic flicker classes so everything returns to normal -->
+  lockedOverlay.classList.remove('flicker');
+  document.getElementById('lockedBig').classList.remove('flickerText');
+  document.body.classList.remove('panicFlash');
+  // <-- end added -->
+
+  ui.classList.remove('hideCursor');  
+  // restore filenames from data-orig if present  
+  const items = document.querySelectorAll('.file .fname');  
+  items.forEach(el=>{  
+    if(el.dataset.orig) el.textContent = el.dataset.orig;  
+  });  
+  // remove blockers  
+  window.removeEventListener('contextmenu', preventDefaultCapture, {capture:true});  
+  window.removeEventListener('keydown', blockCommonKeys, {capture:true});  
+  // restart autoscroll gently  
+  scrollPos = 0;  
+  clearInterval(scrollIv);  
+  scrollIv = setInterval(autoScroll, 30);  
+  console.log('Simulasi dihentikan oleh pengguna (Esc). Demo visual selesai.');  
+}  
+  
+/* Defensive: ensure pressing Escape always restores cursor even if blockers active */  
+document.addEventListener('keydown', (e)=>{  
+  if(e.key === 'Escape'){ exitSimulation(); }  
+}, {capture:true});  
+  
+</script>  
+</body>  
+</html>
